@@ -1,6 +1,7 @@
 import express, { urlencoded } from "express";
 import bcrypt from "bcryptjs";
 import { MongoClient, ObjectId } from "mongodb";
+import cors from 'cors';
 
 // koplar databas server
 const client = new MongoClient("mongodb://127.0.0.1:27017");
@@ -12,6 +13,7 @@ const usersCollection = db.collection("users");
 
 const port = 1337;
 const app = express();
+app.use(cors())
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -21,6 +23,10 @@ app.listen(port, () => {
 });
 
 app.post("/users/register", async (req, res) => {
+  if (req.body.email == undefined || req.body.password == undefined) {
+    res.status(400).send();
+    return; 
+  }
   const hash = bcrypt.hashSync(req.body.password);
   await usersCollection.insertOne({ email: req.body.email, password: hash });
   res.status(201).send();
