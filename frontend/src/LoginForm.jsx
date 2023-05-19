@@ -4,7 +4,7 @@ import viteLogo from "/vite.svg";
 import "./Form.css";
 import axios from "axios";
 
-function LoginForm() {
+function LoginForm({ onLoggedIn }) {
   const [email, setEmail] = useState(undefined);
   const [password, setPassword] = useState(undefined);
 
@@ -18,7 +18,7 @@ function LoginForm() {
         }
       );
       if (response.status == 200) {
-        alert("Your loged in");
+        onLoggedIn(email,password)
       }
     } catch (error) {
       alert("Try again");

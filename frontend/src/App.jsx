@@ -1,29 +1,36 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useState, useEffect } from "react";
+
 import "./App.css";
-import RegisterForm from "./RegisterForm.jsx";
-import LoginForm from "./LoginForm.jsx";
 
+import NotLoggedInPage from "./NotLoggedInPage.jsx";
 
-const pages = ['Login', 'Register', 'BankAccounts', 'BankAccount' ]
 function App() {
-  const [currentPage, setCurrentPage] = useState('Login');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  function updateCount() {
-    
+  function checkIsLoggedIn(){
+    const email = localStorage.getItem('email');
+    const password = localStorage.getItem('password');
+
+    if (email && password) {
+      setIsLoggedIn(true)
+    } else {
+      setIsLoggedIn(false)
+    }
   }
+
+  useEffect(() => {
+    checkIsLoggedIn()
+  }, [])
+  
+  function onLoggedIn (email,password) {
+    localStorage.setItem('email', email)
+    localStorage.setItem('password', password)
+    setIsLoggedIn(true)
+  } 
 
   return (
     <>
-    <div>
-      <button onClick={ () => setCurrentPage('Login')}>Login</button>
-      <button onClick={ () => setCurrentPage('Register')}>Register</button>
-    </div>
-  
-      {
-        currentPage == 'Login' ?   <LoginForm /> : <RegisterForm />
-      }
+      {isLoggedIn == true ? <div>Bank</div> : <NotLoggedInPage onLoggedIn={onLoggedIn} />}
     </>
   );
 }
