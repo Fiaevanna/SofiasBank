@@ -6,9 +6,9 @@ import axios from "axios";
 
 
 
-function RegisterForm() {
-  const [email, setEmail] = useState(undefined);
-  const [password, setPassword] = useState(undefined);
+function RegisterForm({onRegisterd}) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   async function register() {
     try {
@@ -20,7 +20,10 @@ function RegisterForm() {
         }
       );
       if (response.status == 201) {
-        alert("Your loged in");
+        alert("Your registerd please login");
+        setEmail("")
+        setPassword("")
+        onRegisterd()
       }
     } catch (error) {
       alert("Try again");
@@ -33,6 +36,7 @@ function RegisterForm() {
       <form onSubmit={(e) => e.preventDefault()}>
         <label htmlFor="email">Email</label>
         <input
+        value={email}
           name="email"
           id="email"
           type="email"
@@ -42,6 +46,7 @@ function RegisterForm() {
         />
         <label htmlFor="password">Password</label>
         <input
+          value={password}
           name="password"
           id="password"
           type="password"

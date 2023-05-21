@@ -12,12 +12,12 @@ function NotLoggedInPage({ onLoggedIn }) {
 
   return (
     <>
-      <div>
+      <div className="nav">
         <button onClick={() => setCurrentPage("Login")}>Login</button>
         <button onClick={() => setCurrentPage("Register")}>Register</button>
       </div>
 
-      {currentPage == "Login" ? <LoginForm onLoggedIn={onLoggedIn} /> : <RegisterForm />}
+      {currentPage == "Login" ? <LoginForm onLoggedIn={onLoggedIn} /> : <RegisterForm onRegisterd={() => setCurrentPage("Login")} />}
     </>
   );
 }
