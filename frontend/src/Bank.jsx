@@ -64,7 +64,7 @@ function Bank({onLogout}) {
 
   return (
     <>
-      <h1 className="title">Sofias Bank</h1>
+      <h1 className="title">SAB</h1>
       <div className="nav">
         <button onClick={() => setCurrentPage("List")}>List</button>
         <button onClick={() => setCurrentPage("Create")}>Create</button>
