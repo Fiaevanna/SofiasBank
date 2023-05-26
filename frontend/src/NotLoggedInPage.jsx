@@ -12,6 +12,7 @@ function NotLoggedInPage({ onLoggedIn }) {
 
   return (
     <>
+    <h1 className="title">SAB</h1>
       <div className="nav">
         <button onClick={() => setCurrentPage("Login")}>Login</button>
         <button onClick={() => setCurrentPage("Register")}>Register</button>
