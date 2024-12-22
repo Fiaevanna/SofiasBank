@@ -1,34 +1,40 @@
-
-.bankAccountDetails  {
-    background-color: #1a1a1a;
-    margin-bottom: 10px;
-    border: 1px solid rgb(54, 54, 54);
-    padding: 40px;
-    margin-top: 15px;
-    border: 1px solid plum;
+.bankAccountDetails {
+  background: linear-gradient(90deg, #ff5733, #c70039);
+  padding: 40px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(47, 41, 45);
+  border-radius: 20px;
+  color: #170f11;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .bankAccountDetails button {
-    border: 1px solid plum;
+  border: 1px solid rgb(120, 55, 120);
 }
 
-
-.withDraw{
-    display: flex;
-   flex-direction: column;
-   margin-bottom: 100px;
-   
+.withDraw {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 40px;
 }
 
 #delete {
-    border: 1px solid rgb(255, 0, 0);
-}
-
-.info {
-    margin-bottom: 40px;
-    border-bottom: 1px solid plum;
+  border: 1px solid rgb(255, 0, 0);
 }
 
 .withDraw input {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+input {
+  border-radius: 10px;
+  border: 1px solid #c70039;
+  padding: 10px;
+}
+
+.cardInfo {
+  display: flex;
+  justify-content: space-between;
 }

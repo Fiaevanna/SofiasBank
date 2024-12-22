@@ -1,13 +1,20 @@
 .bankAccountListMain {
-    
-   
-    
 }
-
 
 .bankAccountListItem {
-    background-color: #1a1a1a;
-    margin-bottom: 10px;
-    border: 1px solid rgb(54, 54, 54);
+  background: linear-gradient(90deg, #ff5733, #c70039);
+  padding: 40px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+  border: 1px solid rgb(47, 41, 45);
+  border-radius: 20px;
+  color: #170f11;
+  font-size: 16px;
+  font-weight: bold;
 }
 
+h3 {
+  color: #e12836;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}

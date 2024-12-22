@@ -1,0 +1,13 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+}
+
+main {
+  width: 500px;
+}
+
+button {
+  background-color: #d9d0d0;
+  color: #3a3636;
+}

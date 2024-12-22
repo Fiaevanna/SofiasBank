@@ -3,8 +3,9 @@ import CreateBankAccountForm from "./CreateBankAccountForm.jsx";
 import BankAccountsList from "./BankAccountsList";
 import BankAccountDetails from "./BankAccountDetails";
 import axios from "axios";
+import "./Bank.css";
 
-function Bank({onLogout}) {
+function Bank({ onLogout }) {
   // till vänster (currentBankAccount) är variablen medans (setCurrentBankAccount) sätter om variablen och uppdaterar DOM
   const [currentBankAccount, setCurrentBankAccount] = useState(undefined);
   const [currentPage, setCurrentPage] = useState("List");
@@ -16,26 +17,24 @@ function Bank({onLogout}) {
     setCurrentPage("Details");
   }
 
-  async function handleOnSaved(){
+  async function handleOnSaved() {
     const response = await getAllBankAccount();
     const currentBankAccountNew = response.find((bankAccount) => {
-      return bankAccount._id == currentBankAccount._id; 
-
-    })
-    setCurrentBankAccount(currentBankAccountNew)
+      return bankAccount._id == currentBankAccount._id;
+    });
+    setCurrentBankAccount(currentBankAccountNew);
   }
 
-
-  async function handleOnDeleted(){
+  async function handleOnDeleted() {
     await getAllBankAccount();
-    setCurrentPage("List")
+    setCurrentPage("List");
   }
 
-  async function handleOnCreated () {
+  async function handleOnCreated() {
     await getAllBankAccount();
-    setCurrentPage("List")
+    setCurrentPage("List");
   }
-  
+
   useEffect(() => {
     getAllBankAccount();
   }, []);
@@ -53,7 +52,7 @@ function Bank({onLogout}) {
       });
       if (response.status == 200) {
         setBankAccounts(response.data);
-        return response.data; 
+        return response.data;
       }
     } catch (error) {
       alert("Try again");
@@ -61,20 +60,32 @@ function Bank({onLogout}) {
     }
   }
 
-
   return (
-    <>
+    <main>
       <h1 className="title">SAB</h1>
       <div className="nav">
-        <button onClick={() => setCurrentPage("List")}>List</button>
-        <button onClick={() => setCurrentPage("Create")}>Create</button>
+        <button onClick={() => setCurrentPage("List")}>My Accounts</button>
+        <button onClick={() => setCurrentPage("Create")}>Create Account</button>
         <button onClick={onLogout}>Logout</button>
       </div>
-     
-      {currentPage == "List" &&  <BankAccountsList bankAccounts={bankAccounts} onBankAccountChange={handelOnBankAccountChange} />}
-      {currentPage == "Create" &&  <CreateBankAccountForm onCreated={handleOnCreated}/>}
-      {currentPage == "Details" && <BankAccountDetails onDeleted={handleOnDeleted} onSaved={handleOnSaved} bankAccount={currentBankAccount} />}
-    </>
+
+      {currentPage == "List" && (
+        <BankAccountsList
+          bankAccounts={bankAccounts}
+          onBankAccountChange={handelOnBankAccountChange}
+        />
+      )}
+      {currentPage == "Create" && (
+        <CreateBankAccountForm onCreated={handleOnCreated} />
+      )}
+      {currentPage == "Details" && (
+        <BankAccountDetails
+          onDeleted={handleOnDeleted}
+          onSaved={handleOnSaved}
+          bankAccount={currentBankAccount}
+        />
+      )}
+    </main>
   );
 }
 
